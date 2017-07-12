@@ -17,7 +17,7 @@
 
 <p>
   <strong>Card img:</strong>
-  <%= image_tag @card.card_img %>
+  <%= image_tag @card.card_img.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_card_path(@card) %> |
