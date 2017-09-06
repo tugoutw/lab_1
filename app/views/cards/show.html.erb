@@ -1,24 +1,56 @@
+
+<div class="container">
+  <nav class="navbar navbar-static-top" role="navigation">
+  </nav>
+<!--div class="alert alert-success" role="aler">
 <p id="notice"><%= notice %></p>
+</div-->
 
-<p>
-  <strong>Card:</strong>
+<div class="row">
+  <div class="col-md-4">
+<table class="table" style="text-align:left">
+<tr>
+  <td rowspan="4" style="text-align:right;border: 1px solid #ddd;">
+      <%= image_tag @card.card_img.to_s %>
+  </td>
+  <td height="10%">
+  <strong>卡片編號</strong>
+  </td>
+  <td height="10%" >
   <%= @card.card_id %>
-</p>
-
-<p>
-  <strong>Card name:</strong>
+  </td>
+</tr>
+<tr>
+  <td height="10%">
+  <strong>卡片名稱</strong>
+</td>
+<td height="10%">
   <%= @card.card_name %>
-</p>
-
-<p>
-  <strong>Card desc:</strong>
+</td>
+</tr>
+<tr>
+  <td height="10%">
+  <strong>支付點數</strong>
+</td>
+<td height="10%">
+  <%= @card.cost%>
+</td>
+</tr>
+<tr>
+<td height="70%">
+<strong>卡片說明</strong>
+</td>
+<td height="70%">
   <%= @card.card_desc %>
-</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
 
-<p>
-  <strong>Card img:</strong>
-  <%= image_tag @card.card_img.to_s %>
-</p>
+<%= link_to 'Edit', edit_card_path(@card),:class => 'btn btn-default' %>
+<%= link_to 'Back', cards_path,:class => 'btn btn-default' %>
 
-<%= link_to 'Edit', edit_card_path(@card) %> |
-<%= link_to 'Back', cards_path %>
+
+
+</div>

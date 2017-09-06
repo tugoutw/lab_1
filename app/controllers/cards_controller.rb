@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :clone]
 
   # GET /cards
   # GET /cards.json
@@ -28,7 +28,7 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
-        format.html { redirect_to @card, notice: 'Card was successfully created.' }
+        format.html { redirect_to @card, notice: '卡片已成功加入牌組！' }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new }
@@ -56,9 +56,22 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
     respond_to do |format|
-      format.html { redirect_to cards_url, notice: 'Card was successfully destroyed.' }
+      format.html { redirect_to cards_url }
       format.json { head :no_content }
     end
+  end
+
+  # CLONE /cards/1
+  # CLONE /cards/1.json
+  def clone
+    card = Card.find(params[:id])
+    new_card=card.dup
+    new_card.save
+
+    respond_to do |format|
+      format.html { redirect_to cards_url }
+    end
+
   end
 
   private
@@ -69,6 +82,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:card_id, :card_name, :card_desc, :card_img)
+      params.require(:card).permit(:card_id, :card_name, :card_desc, :card_img ,:cost)
     end
 end
